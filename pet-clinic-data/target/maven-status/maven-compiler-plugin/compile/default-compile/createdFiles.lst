@@ -1,0 +1,5 @@
+sfgpetclinic\model\PetType.class
+sfgpetclinic\model\Person.class
+sfgpetclinic\model\Vet.class
+sfgpetclinic\model\Owner.class
+sfgpetclinic\model\Pet.class
