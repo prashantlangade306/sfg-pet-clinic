@@ -1,7 +1,7 @@
 package sfgpetclinic.model;
 
-public enum PetType {
-    ;
+public class PetType extends BaseEntity{
+
     private String name;
 
     public String getName() {
