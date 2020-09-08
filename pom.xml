@@ -41,14 +41,10 @@
             </plugin>
         </plugins>
     </build>
-    <!--<scm>
+    <scm>
         <developerConnection>scm:git:https://github.com/prashantlangade306/sfg-pet-clinic.git</developerConnection>
       <tag>sfg-pet-clinic-0.0.1</tag>
-  </scm>-->
-    <scm>
-        <url>https://github.com/prashantlangade306/sfg-pet-clinic</url>
-        <connection>scm:git:https://github.com/prashantlangade306/sfg-pet-clinic.git</connection>
-        <tag>sfg-pet-clinic-0.0.1</tag>
-    </scm>
+  </scm>
+
 
 </project>
