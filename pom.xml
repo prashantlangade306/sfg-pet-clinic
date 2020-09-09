@@ -20,7 +20,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <start-class>sfgpetclinic.SfgPetClinicApplication</start-class>
+        <start-class>SfgPetClinicApplication</start-class>
     </properties>
 
     <build>
