@@ -1,12 +1,11 @@
 package guru.springframework.sfgpetclinic.services.springdatajpa;
 
+import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.repositories.OwnerRepository;
-import guru.springframework.sfgpetclinic.repositories.PetRespository;
 import guru.springframework.sfgpetclinic.repositories.PetTypeRepository;
+import guru.springframework.sfgpetclinic.services.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import sfgpetclinic.model.Owner;
-import sfgpetclinic.services.OwnerService;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,12 +15,11 @@ import java.util.Set;
 public class OwnerSDJpaService implements OwnerService {
 
     private final OwnerRepository ownerRepository;
-    private final PetRespository petRespository;
     private final PetTypeRepository petTypeRepository;
 
-    public OwnerSDJpaService(OwnerRepository ownerRepository, PetRespository petRespository, PetTypeRepository petTypeRepository) {
+
+    public OwnerSDJpaService(OwnerRepository ownerRepository, PetTypeRepository petTypeRepository) {
         this.ownerRepository = ownerRepository;
-        this.petRespository = petRespository;
         this.petTypeRepository = petTypeRepository;
     }
 

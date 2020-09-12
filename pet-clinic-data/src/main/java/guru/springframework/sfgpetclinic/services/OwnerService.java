@@ -1,6 +1,6 @@
-package sfgpetclinic.services;
+package guru.springframework.sfgpetclinic.services;
 
-import sfgpetclinic.model.Owner;
+import guru.springframework.sfgpetclinic.model.Owner;
 
 public interface OwnerService extends CrudService<Owner, Long>{
     Owner findByLastName(String lastName);

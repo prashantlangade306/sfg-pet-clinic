@@ -1,4 +1,4 @@
-package sfgpetclinic.model;
+package guru.springframework.sfgpetclinic.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
