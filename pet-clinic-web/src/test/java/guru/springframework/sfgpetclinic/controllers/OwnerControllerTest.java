@@ -6,6 +6,7 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -71,5 +72,51 @@ class OwnerControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.view().name("owners/ownerDetails"))
                 .andExpect(MockMvcResultMatchers.model().attribute("owner", Matchers.hasProperty("id", Matchers.is(1l))));
+    }
+
+    @Test
+    void initCreationForm() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners/new"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("owners/createOrUpdateOwnerForm"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("owner"));
+
+        Mockito.verifyZeroInteractions(ownerService);
+    }
+
+    @Test
+    void processCreationForm() throws Exception {
+        Mockito.when(ownerService.save(ArgumentMatchers.any())).thenReturn(Owner.builder().id(1l).build());
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/owners/new"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.view().name("redirect:/owners/1"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("owner"));
+
+        Mockito.verify(ownerService).save(ArgumentMatchers.any());
+    }
+
+    @Test
+    void initUpdateOwnerForm() throws Exception {
+        Mockito.when(ownerService.findById(Mockito.anyLong())).thenReturn(Owner.builder().id(1l).build());
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners/1/edit"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("owners/createOrUpdateOwnerForm"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("owner"));
+
+        Mockito.verifyZeroInteractions(ownerService);
+    }
+
+    @Test
+    void processUpdateOwnerForm() throws Exception {
+        Mockito.when(ownerService.save(ArgumentMatchers.any())).thenReturn(Owner.builder().id(1l).build());
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/owners/1/edit"))
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.view().name("redirect:/owners/1"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("owner"));
+
+        Mockito.verify(ownerService).save(ArgumentMatchers.any());
     }
 }
